@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+
+    <%- include('../partials/nav.ejs') %>
+
+    <img src="img1.jpg" alt="img1" width="380" height="500" style="padding-left: 15px;">
+    <img src="img2.jpg" alt="img2" width="400" height="500">
+    <img src="img3.jpg" alt="img3" width="380" height="500">
+
+    <a class="deleteAll" href="/blogs" role="button" type="submit">Delete All</a>
+
+
+    <div class="blogs content">
+        <br>
+
+        <h2>All Rides</h2>
+
+        <% if (blogs.length > 0) { %>
+           <% blogs.forEach(blog => { %>
+                <a class="single" href="/blogs/<%= blog._id %>">
+                <h3 class="title"><%= blog.title %></h3>
+                <p class="snippet"><%= blog.snippet %></p>
+                
+            </a>
+            <% }) %>
+        <% } else { %>   
+            <p>There are no blogs to display...</p>
+        <% } %>
+
+
+    </div>
+
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script>
+    const delAll = document.querySelector('a.deleteAll');
+        delAll.addEventListener('click', (e) => {
+            const endpoint = `/blogs`;
+            fetch(endpoint, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        });
+    </script>
+
+</body>
+</html>
