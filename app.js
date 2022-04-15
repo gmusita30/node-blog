@@ -2,11 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const { render } = require('express/lib/response');
+const port = 3000;
 
 const blogRoutes = require('./routes/blogRoutes');
-
 //express app
 const app = express();
+
+app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
 
 //connect to mongodb
 const dbURI = 'mongodb+srv://netninja:JqMPygvRRdgLkSdd@cluster0.47ybp.mongodb.net/node-tuts?retryWrites=true&w=majority';
