@@ -6,9 +6,16 @@
   "directories": {
     "doc": "docs"
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "16.14.0"
   },
   "author": "",
   "license": "ISC",
